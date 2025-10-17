@@ -1,0 +1,22 @@
+[
+  {
+    "TipoSuite": "MASTER",
+    "Capacidade": 6,
+    "ValorDiaria": 80.0
+  },
+  {
+    "TipoSuite": "PREMIUM",
+    "Capacidade": 4,
+    "ValorDiaria": 70.0
+  },
+  {
+    "TipoSuite": "DUPLEX",
+    "Capacidade": 2,
+    "ValorDiaria": 30.0
+  },
+  {
+    "TipoSuite": "TESTE",
+    "Capacidade": 10,
+    "ValorDiaria": 130.0
+  }
+]
