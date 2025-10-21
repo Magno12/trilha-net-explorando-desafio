@@ -5,7 +5,6 @@ using System.Linq;
 using System.Threading.Tasks;
 using Newtonsoft.Json;
 
-
 namespace DesafioProjetoHospedagem.Models
 {
     public class LeituraArquivo
@@ -28,9 +27,9 @@ namespace DesafioProjetoHospedagem.Models
             //Criando suites VERIFICAR E MUDAR PARA UMA CLASS
             List<Suite> listSuite = new List<Suite>();
 
-            Suite suiteMaster = new Suite(tipoSuite: "MASTER", capacidade: 6, valorDiaria: 80);
-            Suite suitePremium = new Suite(tipoSuite: "PREMIUM", capacidade: 4, valorDiaria: 70);
-            Suite suiteDuplex = new Suite(tipoSuite: "DUPLEX", capacidade: 2, valorDiaria: 30);
+            Suite suiteMaster = new Suite(id: 1, tipoSuite: "MASTER", capacidade: 6, valorDiaria: 80);
+            Suite suitePremium = new Suite(id: 2, tipoSuite: "PREMIUM", capacidade: 4, valorDiaria: 70);
+            Suite suiteDuplex = new Suite(id: 3, tipoSuite: "DUPLEX", capacidade: 2, valorDiaria: 30);
 
             listSuite.Add(suiteMaster);
             listSuite.Add(suitePremium);
@@ -46,9 +45,6 @@ namespace DesafioProjetoHospedagem.Models
 
             File.WriteAllText("Arquivos/suites.json", suiteSeialize);
 
-            Suite suiteTeste = new Suite(tipoSuite: "TESTE", capacidade: 10, valorDiaria: 130);
-            listSuite.Add(suiteTeste);
-
             suiteSeialize = JsonConvert.SerializeObject(listSuite, Formatting.Indented);
             File.WriteAllText("Arquivos/suites.json", suiteSeialize);
 
@@ -56,22 +52,25 @@ namespace DesafioProjetoHospedagem.Models
             //Console.WriteLine(" Se existe arquivo " + File.Exists(curFile));
         }
 
-        public void LerArquivo(string caminho)
+        public List<Suite> LerArquivo(string caminho)
         {
             try
             {
                 string conteudo = File.ReadAllText(caminho);
-
                 List<Suite> listSuites = JsonConvert.DeserializeObject<List<Suite>>(conteudo);
 
-                foreach (Suite cont in listSuites)
-                {
-                    Console.WriteLine($"{cont.TipoSuite}");
-                }
+                /* 
+                        foreach (Suite cont in listSuites)
+                        {
+                            //"TipoSuite": "MASTER","Capacidade": 6, "ValorDiaria": 80.0 
+                             Console.WriteLine($"Id: {cont.Id}, Tipo de Suite: {cont.TipoSuite}, Capacidades {cont.Capacidade}, Valor da Diaria: {cont.ValorDiaria:c} ");
+                        }
+                 */
+
+                return listSuites;
             }
             catch (System.Exception)
             {
-
                 throw;
             }
         }
